@@ -1,5 +1,11 @@
-import Fastify, {FastifyInstance} from "fastify"
+import app from "./app/server"
 
-const app: FastifyInstance = Fastify(); 
+const port = Number(process.env.PORT ?? 3000);
 
-export default app;
+app.listen({ port: port }, (err, address) => {
+  if (err) {
+    app.log.error(err);
+    process.exit(1);
+  }
+  console.log(`🚀 Server ready at ${address}`);
+});
